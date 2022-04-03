@@ -16,7 +16,7 @@
 
 ## Решение:
 
-1) На примере внутренней сети Чокурдах будет видно, что было принято волевое решение использовать маршрутизацию по максимуму. Это будет постепенно находить отражение в изменениях таблицы для лабораторной по адресации. Т.е. никаких лоллипопов и сабынтерфейсов.
+1) На примере внутренней сети Чокурдаха будет видно, что было принято волевое решение использовать маршрутизацию по максимуму. Это будет постепенно находить отражение в изменениях таблицы для лабораторной по адресации. Т.е. никаких лоллипопов и сабынтерфейсов.
 Само содержание лабораторной по адресации удобнее оставить именно в виде этакой динамически изменяющейся таблицы, постепенно заполняющейся правильными адресами.
 Сети v6 внешнего назначения, для сохранения красоты, съезжают на 80 префикс. Да, не рассчитал. 
 Под менеджмент на всех маршрутизаторах будут созданы лупбеки, на коммутаторах - соответствующие виланы.
@@ -146,7 +146,7 @@ ipv6 route 2001:56:67::/48 2001:56:67:1::29
 ```  
 
 Хосты в Чокурдахе ожили и чувствуют себя как дома:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/00_VLAN_Basis/Topology.jpg "Итоговая топология в EVE-NG")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/%D0%A5%D0%BE%D1%81%D1%82%D1%8B%20%D0%B2%20%D0%A7%D0%BE%D0%BA%D1%80%D1%83%D0%B4%D0%B0%D1%85%D0%B5%20%D0%BE%D0%B6%D0%B8%D0%BB%D0%B8.jpg "Хосты в Чокурдахе ожили")  
    
   
 4) На маршрутизаторах со стороны Триады настроены интерфейсы и маршруты для Чокурдаха.   
@@ -210,7 +210,7 @@ route-map ISP permit 20
 !  
 ```
 Счетчики завертелись:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/00_VLAN_Basis/Topology.jpg "Итоговая топология в EVE-NG")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/PBR.jpg "Счетчики завертелись")  
 
 6) На R28 созданы тесты в сторону провайдера.
 ```
@@ -224,7 +224,7 @@ ip sla schedule 2 life forever start-time now
 ! 
 ``` 
 Тесты отрабатывают удачно:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/00_VLAN_Basis/Topology.jpg "Итоговая топология в EVE-NG")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/%D0%A2%D0%B5%D1%81%D1%82%D1%8B.jpg "Тесты работают")  
 
 На R28 созданы необходимые треки и внесены изменения в PBR.
 ```
@@ -246,8 +246,7 @@ route-map ISP permit 20
 !
 ```
 Отключается канал 1. Попытки попасть с хоста PC30 на 100.67.1.25 заворачиваются в 100.67.2.26:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/00_VLAN_Basis/Topology.jpg "Итоговая топология в EVE-NG")  
-
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/%D0%9E%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%201.jpg "Отключен 1")  
 
 Отключается канал 2. Попытки попасть из с хоста PC31 на 100.67.2.26 заворачиваются в 100.67.1.25:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/00_VLAN_Basis/Topology.jpg "Итоговая топология в EVE-NG")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/%D0%9E%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%202.jpg "Отключен 2")  
