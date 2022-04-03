@@ -11,7 +11,7 @@
 
 
 ## Схема:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/00_VLAN_Basis/Topology.jpg "Итоговая топология в EVE-NG")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/Topolgy_PBR.jpg "Кусок для PBR")
 
 
 ## Решение:
