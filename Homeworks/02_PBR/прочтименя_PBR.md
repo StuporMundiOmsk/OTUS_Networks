@@ -210,6 +210,7 @@ route-map ISP permit 20
 !  
 ```
 Счетчики завертелись:
+
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/PBR.jpg "Счетчики завертелись")  
 
 6) На R28 созданы тесты в сторону провайдера.
@@ -224,6 +225,7 @@ ip sla schedule 2 life forever start-time now
 ! 
 ``` 
 Тесты отрабатывают удачно:
+
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/02_PBR/%D0%A2%D0%B5%D1%81%D1%82%D1%8B.jpg "Тесты работают")  
 
 На R28 созданы необходимые треки и внесены изменения в PBR.
