@@ -6,7 +6,7 @@
 
 
 ## Схема:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/03_OSPF/%D0%9C%D0%BE%D1%81%D0%BA%D0%B0%D1%83.jpg "K-City")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/K-City.jpg "K-City")
 
 
 ## Решение:
@@ -165,9 +165,9 @@ ipv6 route 2001:56:67::/48 2001:FFFF:100:67:2::28
 ``` 
 ###Итоговые картинки: 
 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/03_OSPF/v4%20%D1%81%20E2.jpg "Neighbors")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/03_OSPF/v6%20%D0%B1%D0%B5%D0%B7%20E2.jpg "Topologys")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/03_OSPF/10%20%D0%B7%D0%BE%D0%BD%D0%B0.jpg "Routes")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Neighbors%20in%20K-City.jpg "Neighbors")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Topology%20in%20K-City.jpg "Topologys")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Routes%20in%20K-City.jpg "Routes")
 
 
 
