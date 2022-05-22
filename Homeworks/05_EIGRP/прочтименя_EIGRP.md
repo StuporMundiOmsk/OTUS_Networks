@@ -8,7 +8,7 @@
 
 
 ## Схема:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/Leningrad.jpg) "Ленинград")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/Leningrad.jpg "Ленинград")
 
 
 ## Решение:
@@ -363,7 +363,7 @@ router eigrp Lenin
 
 
 ## 3) На R16 и R17 вручную суммируются маршруты для передачи на вышестоящий R18, что наглядно подтверждается красивой RIB. R16 и R17 имеют более серьезные по размеру RIBы (включая умолчания от R18), маршрутизация в пределах Ленинграда работает!
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg)"R18_routes")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg "R18_routes")
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R16_v4_routes.jpg "R16_v4_routes") 
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R16_v6_routes.jpg "R16_v6_routes") 
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/Leningrads_routing.jpg "Leningrads_routing")
