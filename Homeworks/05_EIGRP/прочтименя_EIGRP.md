@@ -8,13 +8,13 @@
 
 
 ## Схема:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/K-City.jpg "Ленинград")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/Leningrad.jpg) "Ленинград")
 
 
 ## Решение:
 
 ## 1) Адреса на оборудовании, согласно наконец-то окончательно сформировавшейся табличке из лабораторки по адресации:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/K-City.jpg "Базисная табличка")
+Базисная табличка: https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/01_Addresses/%D0%BF%D1%80%D0%BE%D1%87%D1%82%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F.md
 
 ### SW9:
 ```
@@ -363,14 +363,14 @@ router eigrp Lenin
 
 
 ## 3) На R16 и R17 вручную суммируются маршруты для передачи на вышестоящий R18, что наглядно подтверждается красивой RIB. R16 и R17 имеют более серьезные по размеру RIBы (включая умолчания от R18), маршрутизация в пределах Ленинграда работает!
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Neighbors%20in%20K-City.jpg "R18_routes")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Neighbors%20in%20K-City.jpg "R16_v4_routes") 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Neighbors%20in%20K-City.jpg "R16_v6_routes") 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Neighbors%20in%20K-City.jpg "Leningrads_routing")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg)"R18_routes")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R16_v4_routes.jpg "R16_v4_routes") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R16_v6_routes.jpg "R16_v6_routes") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/Leningrads_routing.jpg "Leningrads_routing")
 
 
 ## 4) Для ущемления горемычного R32 применяется фильтрация на основе ACL (см. конфиг R16). С v4 все работает, как надо, а вот с v6 возникли проблемы: во-первых, статический v6 почему-то не желает редистрибьютиться с R18; а во-вторых, я не очень понимаю, как его фильтровать.
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/04_ISIS/Neighbors%20in%20K-City.jpg "R32_v4_routes")   
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R32_v4_routes")   
 
 
 
