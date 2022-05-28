@@ -5,6 +5,7 @@
 2. Развернуть там EIGRP без ограничений
 3. Суммировать распространяемые префиксы на R16 и R17 во имя удобства и красоты
 4. Ущемить максимально права отщепенца R32
+5. Исправление нестыковок с IPv6
 
 
 ## Схема:
@@ -370,8 +371,34 @@ router eigrp Lenin
 
 
 ## 4) Для ущемления горемычного R32 применяется фильтрация на основе ACL (см. конфиг R16). С v4 все работает, как надо, а вот с v6 возникли проблемы: во-первых, статический v6 почему-то не желает редистрибьютиться с R18; а во-вторых, я не очень понимаю, как его фильтровать.
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R32_v4_routes")   
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R32_v4_routes") 
 
+  
+## 5) По совету Алексея в умолчаниях для v6 на R18 глобальные адреса были заменены на линк-локалы (да, т.к. они не уникальны, пришлось указывать интерфейсы), и сразу же R32 увидел свет в конце v6 тоннеля:
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg "R32_v6_routes_1")
+В конфигурацию R16 добавлен v6 префикс-лист, разрешающий умолчание и запрещающий по-умолчанию все остальное, затем префик лист это повешен на исходящие EIGRP апдейты в сторону R32:
+```
+!
+ipv6 prefix-list Default seq 5 permit ::/0
+!
+!
+ address-family ipv6 unicast autonomous-system 1
+  !
+  af-interface Ethernet0/1
+   summary-address 2001:56:40::/48
+  exit-af-interface
+  !
+  topology base
+   distribute-list prefix-list Default out Ethernet0/3
+  exit-af-topology
+  eigrp router-id 16.16.16.16
+ exit-address-family
+!
+```
+Теперь, наконец-то, R32 окончательно и бесповортно ущемлен и со всех сторон закрепощен! Ура!!!
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg "R32_v6_routes_2")
+
+ 
 
 
 
