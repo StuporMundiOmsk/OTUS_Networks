@@ -375,7 +375,7 @@ router eigrp Lenin
 
   
 ## 5) По совету Алексея в умолчаниях для v6 на R18 глобальные адреса были заменены на линк-локалы (да, т.к. они не уникальны, пришлось указывать интерфейсы), и сразу же R32 увидел свет в конце v6 тоннеля:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg "R32_v6_routes_1")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v6_routes_1.jpg "R32_v6_routes_1")
 В конфигурацию R16 добавлен v6 префикс-лист, разрешающий умолчание и запрещающий по-умолчанию все остальное, затем префик лист это повешен на исходящие EIGRP апдейты в сторону R32:
 ```
 !
@@ -396,7 +396,7 @@ ipv6 prefix-list Default seq 5 permit ::/0
 !
 ```
 Теперь, наконец-то, R32 окончательно и бесповортно ущемлен и со всех сторон закрепощен! Ура!!!
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R18_routes.jpg "R32_v6_routes_2")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v6_routes_2.jpg "R32_v6_routes_2")
 
  
 
