@@ -5,7 +5,7 @@
 2. Устранить досадные мелочи, мешающие простым гражданам Ленинграда пинговать коренных московитов 
 
 ## Схема:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/Leningrad.jpg "Итоговая картина")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/Topology_Full.jpg "Итоговая картина")
 
 ## Решение:
 
@@ -106,9 +106,9 @@ ip route 10.40.0.0 255.255.0.0 Null0
 ## 2) Внутри Триады образовались технологические отверстия в BGP, поэтому, чтобы добиться связности между столицами, пришлось изничтожить маршрут по умолчанию на R14 (временно! он би бэк сун), чтобы путь Радищева приобрел простые и понятные очертания: R15-R21-R24-R18.
 Но неприятности на этом не закончились. В предыдущей домашке внутри Ленинграда в рамках EIGRP было настроено суммирование маршрутов до R18, всю красоту которого разрушил блекхольный маршрут, необходимый для BGP. Суммаризацию на R16 и R17 пришлось свернуть.
 Маршруты на границах городов:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R15&R18_BGP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "R15&R18_BGP") 
 Удачные переговоры лучших представителей двух городов:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "Pongs_1")   
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/Pongs_1.jpg "Pongs_1")   
 
 
 # BGP, часть 2 - IBGP 
@@ -182,7 +182,7 @@ route-map AS-PREP permit 10
 neighbor 101.45.1.22 route-map AS-PREP in
 
 ```
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "AS-PREP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/AS-PREP.jpg "AS-PREP") 
 ### R18:
 ``` 
 !
@@ -190,10 +190,10 @@ router bgp 2042
 !
 maximum-paths 2
 ```
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "MAX-PATHS") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/MAX-PATHS.jpg "MAX-PATHS") 
 
 ## 3) Вновь удачные переговоры лучших представителей двух городов:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "Pongs_2") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/Pongs_2.jpg "Pongs_2") 
 
 
 # BGP, часть 3 - Filtering 
@@ -259,7 +259,7 @@ neighbor 101.45.1.14 prefix-list PL_OUT out
 !
 ip prefix-list PL_OUT seq 5 deny 0.0.0.0/0 le 32
 ``` 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R14_BGP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R14_BGP.jpg "R14_BGP") 
 
 ## 4) Из Ламаса в Москау должно прилетать только умолчание и префикс Ленинграда (да, ручное умолчание опять пришлось удалять)
 ### R21 (R15 начал адекватно воспринимать маршруты только после удаления AS-Path ACL из предыдущего подзадания):
@@ -275,8 +275,8 @@ ip prefix-list PL_OUT seq 5 permit 10.0.0.0/8 ge 16 le 24
 ip prefix-list PL_OUT seq 10 deny 0.0.0.0/0 le 32
 !
 ``` 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R21_advertised")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "R15_BGP")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R21_advertised.jpg "R21_advertised")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15_BGP.jpg "R15_BGP")
 
 ## 5) Специально выбраны другие писюки, чтобы не создавалось в этих многочисленных пингах впечатление обмана!
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/05_EIGRP/R32_v4_routes.jpg "Pongs_3") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/Pongs_3.jpg "Pongs_3") 
