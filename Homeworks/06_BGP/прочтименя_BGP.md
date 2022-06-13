@@ -107,7 +107,9 @@ ip route 10.40.0.0 255.255.0.0 Null0
 Но неприятности на этом не закончились. В предыдущей домашке внутри Ленинграда в рамках EIGRP было настроено суммирование маршрутов до R18, всю красоту которого разрушил блекхольный маршрут, необходимый для BGP. Суммаризацию на R16 и R17 пришлось свернуть.
 Маршруты на границах городов:
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "R15&R18_BGP") 
+
 Удачные переговоры лучших представителей двух городов:
+
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/Pongs_1.jpg "Pongs_1")   
 
 
