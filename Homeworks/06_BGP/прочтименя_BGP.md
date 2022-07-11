@@ -208,46 +208,40 @@ maximum-paths 2
 5) Убедиться, что связность не пострадала  
 
 ## Решение:
-## 1) Под "транзитным" трафиком решено понимать все, что зародилось где-то кроме известных нам AS.
+## 1) "Тарнзитом" мы становимся, когда объявляем через себя одному из соседей префиксы, полученные от другого. В этом смысле лучший способ - не анонсировать ничего, кроме своих внутренних сетей.
 ### R14:
 ``` 
 !
-ip as-path access-list 10 permit _2042$
-ip as-path access-list 10 permit _101$
-ip as-path access-list 10 permit _301$
-ip as-path access-list 10 permit _520$
+ip as-path access-list 10 permit ^$
 ip as-path access-list 10 deny .*
 !
 router bgp 1001
 !
-neighbor 101.45.1.22 filter-list 10 in
+neighbor 101.45.1.22 filter-list 10 out
 ```
 ### R15:
 ``` 
 !
-ip as-path access-list 10 permit _2042$ | _520$ | _301$ | _101$
+ip as-path access-list 10 permit ^$
 ip as-path access-list 10 deny .*
 !
 router bgp 1001
 !
-neighbor 102.45.1.21 filter-list 10 in
+neighbor 102.45.1.21 filter-list 10 out
 ```
 
-## 2) В контексте префикс-листов было принято решение понимать транзитными те префиксы, которые не имеют отношения к известным нам.
+## 2) Префикс-листом также блокируем анонсы наружу чего бы то ни было, кроме собственных внутренних сетей.
 ### R18:
 ``` 
 !
-ip prefix-list PL_IN seq 5 permit 10.0.0.0/8 ge 16 le 24
-ip prefix-list PL_IN seq 10 permit 100.0.0.0/8 ge 16 le 24
-ip prefix-list PL_IN seq 15 permit 101.0.0.0/8 ge 16 le 24
-ip prefix-list PL_IN seq 20 permit 102.0.0.0/8 ge 16 le 24
-ip prefix-list PL_IN seq 25 deny 0.0.0.0/0 le 32
+ip prefix-list PL_OUT seq 5 permit 10.40.0.0/16
+ip prefix-list PL_OUT seq 10 deny 0.0.0.0/0 le 32
 !
-router bgp 1001
+router bgp 2042
 !
-neighbor 100.40.1.24 prefix-list PL_IN in
+neighbor 100.40.1.24 prefix-list PL_OUT out
 !
-neighbor 100.40.2.26 prefix-list PL_IN in
+neighbor 100.40.2.26 prefix-list PL_OUT out
 ```
 
 ## 3) Из Киторна в Москау должно прилетать только умолчание (да, ручное умолчание опять пришлось удалять)
@@ -257,27 +251,40 @@ neighbor 100.40.2.26 prefix-list PL_IN in
 router bgp 101
 !
 neighbor 101.45.1.14 default-originate
-neighbor 101.45.1.14 prefix-list PL_OUT out
+``` 
+
+### R14
+``` 
 !
-ip prefix-list PL_OUT seq 5 deny 0.0.0.0/0 le 32
+ip prefix-list PL_IN seq 5 permit 0.0.0.0/0
+ip prefix-list PL_IN seq 10 deny 0.0.0.0/0 le 32
+!
+router bgp 1001
+!
+neighbor 101.45.1.22 prefix-list PL_IN in
 ``` 
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R14_BGP.jpg "R14_BGP") 
 
 ## 4) Из Ламаса в Москау должно прилетать только умолчание и префикс Ленинграда (да, ручное умолчание опять пришлось удалять)
-### R21 (R15 начал адекватно воспринимать маршруты только после удаления AS-Path ACL из предыдущего подзадания):
+### R21:
 ```
 !
-router bgp 101
+router bgp 301
 !
-neighbor 101.45.1.14 default-originate
-neighbor 101.45.1.14 prefix-list PL_OUT out
-!
-!
-ip prefix-list PL_OUT seq 5 permit 10.0.0.0/8 ge 16 le 24
-ip prefix-list PL_OUT seq 10 deny 0.0.0.0/0 le 32
+neighbor 102.45.1.15 default-originate
 !
 ``` 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R21_advertised.jpg "R21_advertised")
+### R15
+``` 
+!
+ip prefix-list PL_IN seq 5 permit 0.0.0.0/0
+ip prefix-list PL_IN seq 10 permit 10.40.0.0/16	 
+ip prefix-list PL_IN seq 15 deny 0.0.0.0/0 le 32
+!
+router bgp 1001
+!
+neighbor 102.45.1.21 prefix-list PL_IN in
+``` 
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15_BGP.jpg "R15_BGP")
 
 ## 5) Специально выбраны другие писюки, чтобы не создавалось в этих многочисленных пингах впечатление обмана!
