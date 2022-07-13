@@ -90,6 +90,7 @@ ip access-list extended NAT
 !
 ```
 Хосты в Москау отказываются отвечать (PAT работает как файерволл, однако трансляция идет. На всякий пропинговал и дальний интерфейс Ламаса):
+
 ![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "PAT_Lenin") 
 
 
