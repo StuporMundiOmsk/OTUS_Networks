@@ -52,7 +52,7 @@ ip access-list extended NAT
 !
 
 ```
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "PAT_Moscow") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Moscow.jpg "PAT_Moscow") 
 
 
 ## 2) NAT с перегрузкой в пять адресов в Ленинграде настраивается весьма ординарно
@@ -90,7 +90,7 @@ ip access-list extended NAT
 !
 ```
 Хосты в Москау отказываются отвечать (PAT работает как файерволл, однако трансляция идет. На всякий пропинговал и дальний интерфейс Ламаса):
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "PAT_Lenin") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "PAT_Lenin") 
 
 
 ## 3) Статическая трансляция для R20 настраивается на R14-15 весьма прозаически
@@ -100,10 +100,10 @@ ip nat inside source static 10.45.6.20 10.45.99.100
 !
 ```
 Вот так выглядят работающие одновременно на R15 PAT и static NAT:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "NAT_R20") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "NAT_R20") 
 
 ### Интересная ситуация! После добавления статики для R20 ему стали доступны оба хоста Ленинграда (после разворачивания ПАТов в обеих столицах связность хостов пропала, что логично), хотя никак явно на R18 он не прописан! Ну а сам R20 доступен по наружному адресу своему - здесь все ожидаемо. Как статический нат в Москве открыл дорогу через пат Ленинграда - вопрос, на который я пока ответа не нашел. 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "R20_Pheno") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/R20_Pheno.jpg "R20_Pheno") 
 
 
 ## 4) Вооруженные опытом статических трансляций из предыдущего задания, мы начинаем догадываться, что лучший способ открыть доступ через нат - задать статическую трансляцию без ограничений по портам. Однако, кажется, что в задании не случайно фигурирует "удаленное управление", поэтому сделаю статику для R19, но только для SSH. Настройки на R14-15 привычно выглядят одинаково.
@@ -142,7 +142,7 @@ ip access-list extended NAT
 !
 !
 ```
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "PAT_Choku") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Choku.jpg "PAT_Choku") 
 
 
 ## 6) Настройка DHCP на обоих свитчах (именно свитчах, потому что у нас ведь везде L3 без всяких виланов, а значит DHCP на R12-13, помимо проблемы их синхронизации, вообще не будет работать корректно, т.к. отсутствует метка в виде тега вилана, на основании которого сервер должен понимать, какой пул использовать для ответа на запрос). DHCP опускается на уровень SW2-3 без релеев. В принципе, в начале курса была лаба по DHCP, т.ч. не критично.
@@ -170,13 +170,13 @@ ip dhcp pool 116
 !
 ```
 Хосты получили адреса:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "DHCP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/DHCP.jpg "DHCP") 
 
 
 ## 7) NTP уже никак не привязан к сетям, а потому его можно настроить вполне на R12-13 (настройки аналогичны). Однако вопрос их синхронизации все ещё стоит довольно остро.
 ### Сервера: ntp broadcast на всех интерфейсах, ntp master в глобальной конфигурации
 ### Клиенты: ntp server 10.45.2.12 и 3.13 (правильнее использовать лупбеки, но раз уж полная связность айпишная, то пусть будет физика) в глобальной конфигурации и ntp broadcast client на интерфейсах, смотрящих примерно в сторону серверов
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/R15%26R18_BGP.jpg "NTP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NTP.jpg "NTP") 
 
 
 
