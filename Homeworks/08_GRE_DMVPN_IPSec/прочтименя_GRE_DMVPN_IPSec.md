@@ -6,7 +6,7 @@
 
 
 ## Схема:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/06_BGP/Topology_Full.jpg "Итоговая картина")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/Topology.jpg "Итоговая картина")
 
 ## Решение:
 
@@ -42,7 +42,7 @@ ip route 10.45.0.0 255.255.0.0 10.56.56.15
 
 ### В итоге хосты в столицах видят другу друга вновь, а трассировка показывает, что делают они это через туннель
 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Moscow.jpg "GRE") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/GRE.jpg "GRE") 
 
 
 ## 2.1) GRE+NHRP 
@@ -107,11 +107,11 @@ interface Tunnel1
 ```
 
 ### На хабе в Москау подняты туннели:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "R15_GRE+NHRP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R15_GRE%2BNHRP.jpg "R15_GRE+NHRP") 
 
 ### Споки ноки:
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "R27_GRE+NHRP") 
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "R28_GRE+NHRP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R27_GRE%2BNHRP.jpg "R27_GRE+NHRP") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R28_GRE%2BNHRP.jpg "R28_GRE+NHRP") 
 
 
 ## 2.2) EIGRP+DMVPN
@@ -131,8 +131,8 @@ interface Tunnel1
 ```
 
 ### EIGRP поднялось, сеть R27 (пришлось поднять лупбек) видна в таблице напрямую, а не через хаб; трассировка наглядно показывает механизм DMVPN во 2-ой фазе
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "R15_EIGRP")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/PAT_Lenin.jpg "R28_EIGRP")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R15_EIGRP.jpg "R15_EIGRP")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R28_EIGRP.jpg "R28_EIGRP")  
 
 
 # GRE&DMVPN over IPSec
@@ -155,20 +155,20 @@ crypto isakmp policy 10
 ```
 
 ### CA на R15
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "R15_RSA_1")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "R15_RSA_2")
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "R15_PKI")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R15_RSA_1.jpg "R15_RSA_1")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R15_RSA_2.jpg "R15_RSA_2")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R15_PKI.jpg "R15_PKI")  
 
 ### Получение ключей на споке и хабе
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "R27_Cert")  
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "R15_Cert") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R27_Cert.jpg "R27_Cert")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R15_Cert.jpg "R15_Cert") 
 
 
 ## 1.2) IPSEc Phase 2 (Totally failed)
 
 ### Как и сказано в дисклеймере, полнейший провал (при аналогичных настройках хаба и споков) - не сильный защитник, нуждаюсь в помощи!
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "Failed on Spoke")  
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "Failed on Hub") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20on%20Spoke.jpg "Failed on Spoke")  
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20on%20Hub.jpg "Failed on Hub") 
 
 ### Ключики на R15
 ```
@@ -322,10 +322,10 @@ interface Ethernet0/2
 ```
 
 ### R18 настроен аналогично R27-28 из предыдущих попыток, сертификат получил
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "R18_Cert")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/R18_Cert.jpg "R18_Cert")
 
 ### Однако, в лучших традициях, опять эпик фейл
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/07_NAT_DHCP_NTP/NAT_R20.jpg "Failed GRE_IPSec") 
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20GRE_IPSec.jpg "Failed GRE_IPSec") 
 
 
 ## Очень тянет сделать вывод о том, что IPSec - приспособление инквизиции для эффективного причинения боли! Но, скорее всего, сказывается нулевой опыт мой в секурность... 
