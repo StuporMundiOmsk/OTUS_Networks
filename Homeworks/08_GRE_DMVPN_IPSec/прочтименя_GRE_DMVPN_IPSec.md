@@ -333,7 +333,7 @@ interface Ethernet0/2
 ## Очень тянет сделать вывод о том, что IPSec - приспособление инквизиции для эффективного причинения боли! Но, скорее всего, сказывается нулевой опыт мой в секурность... 
 
 ## 3.1) На R15 и R18 применяется простейший IPSec с аутентификацией по паролю (разумеется, cisco)
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20GRE_IPSec.jpg "GRE_IPSec_preshare")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/GRE_IPSec_preshare.jpg "GRE_IPSec_preshare")
 
 ## 3.2) Последовательность команд на R15/R18
 ```
@@ -378,4 +378,4 @@ crypto pki enroll SELF
 ```
 
 Всю настройку списывал с итоговой лабы, где все завелось - у меня же ничего не завелось. По той же схеме: ключики получаются, IPSec не поднимается.
-![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20GRE_IPSec.jpg "GRE_IPSec_CA")
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/GRE_IPSec_CA.jpg "GRE_IPSec_CA")
