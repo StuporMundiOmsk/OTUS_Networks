@@ -139,7 +139,9 @@ interface Tunnel1
 
 ## Задание:
 1. Покрыть шифрованием существующие DMVPN
-2. Покрыть шифрованием существующие GRE 
+2. Покрыть шифрованием существующие GRE
+3. Исправить шифрование GRE
+4. Исправить шифрование DMVPN   
 
 ## 1.1) IPSec Phase 1, CA
 
@@ -330,3 +332,50 @@ interface Ethernet0/2
 
 ## Очень тянет сделать вывод о том, что IPSec - приспособление инквизиции для эффективного причинения боли! Но, скорее всего, сказывается нулевой опыт мой в секурность... 
 
+## 3.1) На R15 и R18 применяется простейший IPSec с аутентификацией по паролю (разумеется, cisco)
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20GRE_IPSec.jpg "GRE_IPSec_preshare")
+
+## 3.2) Последовательность команд на R15/R18
+```
+R15:
+crypto key generate rsa general-keys label R15 exportable modulus 2048
+crypto pki server R15 
+ no shutdown
+
+R18:
+crypto key generate rsa label R18 modulus 2048
+crypto pki trustpoint R18
+ enrollment url http://R15
+ subject-name CN=R18,OU=STUPOR,O=OMSK,C=RU
+ rsakeypair R18
+ revocation-check none
+crypto pki authenticate R18
+crypto pki enroll R18
+
+R15:
+crypto pki server R15 grant all
+
+R15/18:
+crypto isakmp policy 20
+ authentication rsa-sig
+
+crypto ipsec transform-set GRE esp-aes esp-sha-hmac
+crypto ipsec profile GRE
+ set transform-set GRE
+
+interface tunnel 0
+ tunnel protection ipsec profile GRE
+
+R15:
+crypto pki trustpoint SELF
+ enrollment url http://R15
+ subject-name CN=R15,OU=STUPOR,O=OMSK,C=RU
+ rsakeypair SELF
+ revocation-check none
+crypto pki authenticate SELF
+crypto pki enroll SELF 
+
+```
+
+Всю настройку списывал с итоговой лабы, где все завелось - у меня же ничего не завелось. По той же схеме: ключики получаются, IPSec не поднимается.
+![alt-текст](https://github.com/StuporMundiOmsk/OTUS_Networks/blob/main/Homeworks/08_GRE_DMVPN_IPSec/Failed%20GRE_IPSec.jpg "GRE_IPSec_CA")
